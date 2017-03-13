@@ -1,6 +1,9 @@
-<md-list>
-  <md-list-item *ngFor="let contact of contacts">
+<md-nav-list>
+  <a
+    md-list-item [routerLink]="['/contacts', contact.id]"
+    *ngFor="let contact of contacts"
+    >
     <img src="{{ contact.image }}" md-list-avatar alt="Profilbild von {{ contact.name }}">
     <h3 md-line>{{ contact.name }}</h3>
-  </md-list-item>
-</md-list>
+  </a>
+</md-nav-list>
