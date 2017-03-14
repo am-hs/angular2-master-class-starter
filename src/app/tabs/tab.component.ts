@@ -7,18 +7,10 @@ import { TabsComponent } from './tabs.component';
     selector: 'trm-tab',
     templateUrl: 'tab.component.html'
 })
-export class TabComponent implements OnInit {
+export class TabComponent {
     @Input()
     selected: boolean
 
     @Input()
     title: string
-    
-    constructor(
-        private tabsComponent: TabsComponent
-    ) { }
-
-    ngOnInit() {
-        this.tabsComponent.addTab(this);
-    }
 }
