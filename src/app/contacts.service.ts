@@ -44,6 +44,12 @@ export class ContactsService {
     };
   }
 
+  search(term: string) {
+    let url = this.apiToken + '/api/search?text=' + term;
+    return this.http.get(url)
+      .map(response => response.json().items);
+  }
+
   updateContact(contact: Contact) {
     return this.http.put(
       this.apiToken + '/api/contacts/' + contact.id,
