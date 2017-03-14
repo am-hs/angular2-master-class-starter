@@ -1,18 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ValueProvider, OpaqueToken } from '@angular/core';
-import { MaterialModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule } from '@angular/router';
-import { ContactsAppComponent } from './contacts.component';
-import { ContactsService } from "./contacts.service";
-import { ContactsListComponent } from './contacts-list/contacts-list.component';
-import { APP_ROUTES } from './app.routes';
-import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
-import { HttpModule } from "@angular/http";
+import { NgModule, OpaqueToken, ValueProvider } from '@angular/core';
+
 import { API_ENDPOINT_TOKEN } from './data/tokens';
-import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
-import { FormsModule } from "@angular/forms";
+import { APP_ROUTES } from './app.routes';
+import { BrowserModule } from '@angular/platform-browser';
+import { ContactsAppComponent } from './contacts.component';
+import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
+import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
+import { ContactsListComponent } from './contacts-list/contacts-list.component';
+import { ContactsService } from "./contacts.service";
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
+import { MaterialModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
+import { TabComponent } from './tabs/tab.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
     ContactsListComponent,
     ContactsDetailComponent,
     ContactsEditorComponent,
-    ContactsDetailViewComponent
+    ContactsDetailViewComponent,
+    TabComponent,
+    TabsComponent
   ],
   imports: [
     BrowserModule,
