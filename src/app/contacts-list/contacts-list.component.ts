@@ -1,5 +1,7 @@
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/merge';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -22,14 +24,11 @@ export class ContactsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.contacts = this.contactsService.getContacts();
-    this.terms$
+    this.contacts = this.terms$
       .debounceTime(400)
       .distinctUntilChanged()
-      .subscribe(term => this.search(term));
-  }
-
-  search(term: string) {
-    this.contacts = this.contactsService.search(term);
+      .switchMap(term => this.contactsService.search(term))
+      .merge(this.contactsService.getContacts())
+      ;
   }
 }
