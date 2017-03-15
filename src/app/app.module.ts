@@ -17,6 +17,8 @@ import { MaterialModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { TabComponent } from './tabs/tab.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { AboutComponent } from './about/about.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { TabsComponent } from './tabs/tabs.component';
     ContactsEditorComponent,
     ContactsDetailViewComponent,
     TabComponent,
-    TabsComponent
+    TabsComponent,
+    AboutComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,5 @@
+import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
@@ -23,9 +25,10 @@ export class ContactsDetailViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.contactsService
-      .getContact(this.activatedRoute.snapshot.params['id'])
-      .subscribe(contact => this.contact = contact);
+    this.activatedRoute.params
+      .switchMap(params => this.contactsService.getContact(params['id']))
+      .subscribe(contact => this.contact = contact)
+      ;
     
     this.eventBusService.emit(
       EventBusService.TYPE_APP_TITLE,

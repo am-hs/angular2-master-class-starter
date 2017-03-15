@@ -21,8 +21,7 @@ export class ContactsListComponent implements OnInit {
   terms$ = new Subject<string>();
   
   constructor(
-      private contactsService: ContactsService,
-      private eventBusService: EventBusService
+      private contactsService: ContactsService
   ) {}
 
   ngOnInit() {
@@ -32,10 +31,5 @@ export class ContactsListComponent implements OnInit {
       .switchMap(term => this.contactsService.search(term))
       .merge(this.contactsService.getContacts())
       ;
-    
-    this.eventBusService.emit(
-      EventBusService.TYPE_APP_TITLE,
-      "Contacts"
-      );
   }
 }
