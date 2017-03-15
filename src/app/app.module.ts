@@ -1,6 +1,6 @@
+import { API_ENDPOINT_TOKEN, CONFIRM_GUARD } from './data/tokens';
 import { NgModule, OpaqueToken, ValueProvider } from '@angular/core';
 
-import { API_ENDPOINT_TOKEN } from './data/tokens';
 import { APP_ROUTES } from './app.routes';
 import { AboutComponent } from './about/about.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,8 +20,8 @@ import { RouterModule } from '@angular/router';
 import { TabComponent } from './tabs/tab.component';
 import { TabsComponent } from './tabs/tabs.component';
 
-export function doConfirm() {
-  return window.confirm('Navigate away without saving?');
+export function doConfirm(component: ContactsEditorComponent) {
+  return !component.warnOnClosing || window.confirm('Navigate away without saving?');
 }
 
 @NgModule({
@@ -48,7 +48,7 @@ export function doConfirm() {
     ContactsService,
     EventBusService,
     <ValueProvider>{ provide: API_ENDPOINT_TOKEN, useValue: 'http://localhost:4201' },
-    { provide: 'ConfirmNavigationGuard', useValue: doConfirm }
+    { provide: CONFIRM_GUARD, useValue: doConfirm }
   ],
   bootstrap: [ContactsAppComponent]
 })

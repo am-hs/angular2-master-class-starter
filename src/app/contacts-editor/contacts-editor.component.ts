@@ -12,7 +12,8 @@ import { EventBusService } from './../event-bus.service';
 })
 export class ContactsEditorComponent implements OnInit {
 
-  contact: Contact;
+  contact: Contact
+  warnOnClosing: boolean = true
 
   constructor(
     private contactsService: ContactsService,
@@ -36,11 +37,18 @@ export class ContactsEditorComponent implements OnInit {
   }
 
   cancel(contact: Contact) {
-    this.router.navigate(['/contacts', contact.id ]);
+    this.navigateToList();
   }
 
   save(contact: Contact) {
     this.contactsService.updateContact(contact)
-      .subscribe(() => this.cancel(contact));
+      .subscribe(() => {
+        this.warnOnClosing = false;
+        this.navigateToList();
+      });
+  }
+
+  navigateToList() {
+    this.router.navigate(['/contacts', this.contact.id ]);
   }
 }
