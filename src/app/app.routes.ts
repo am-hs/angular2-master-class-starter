@@ -7,7 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { Route } from "@angular/router/typings/router";
 
 export const APP_ROUTES: Route[] = [
-     { path: 'about', component: AboutComponent },
+     { path: 'about', loadChildren: './about/about.module#AboutModule' },
      { path: '', component: DashboardComponent, children: [
         { path: 'contacts/:id', component: ContactsDetailViewComponent,
             resolve: { contact: ContactsResolver } },

@@ -2,7 +2,6 @@ import { API_ENDPOINT_TOKEN, CONFIRM_GUARD } from './data/tokens';
 import { NgModule, OpaqueToken, ValueProvider } from '@angular/core';
 
 import { APP_ROUTES } from './app.routes';
-import { AboutComponent } from './about/about.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ContactsAppComponent } from './contacts.component';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
@@ -34,7 +33,6 @@ export function doConfirm(component: ContactsEditorComponent) {
     ContactsDetailViewComponent,
     TabComponent,
     TabsComponent,
-    AboutComponent,
     DashboardComponent
   ],
   imports: [
