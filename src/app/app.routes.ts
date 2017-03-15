@@ -8,7 +8,7 @@ export const APP_ROUTES: Route[] = [
      { path: 'about', component: AboutComponent },
      { path: '', component: DashboardComponent, children: [
         { path: 'contacts/:id', component: ContactsDetailViewComponent },
-        { path: 'contacts/:id/edit', component: ContactsEditorComponent },
+        { path: 'contacts/:id/edit', component: ContactsEditorComponent, canDeactivate: [ 'ConfirmNavigationGuard'] },
         { path: '**', redirectTo: '/contacts/0' }
      ]},
      { path: '**', redirectTo: '/' }

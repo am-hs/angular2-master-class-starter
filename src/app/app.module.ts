@@ -2,6 +2,7 @@ import { NgModule, OpaqueToken, ValueProvider } from '@angular/core';
 
 import { API_ENDPOINT_TOKEN } from './data/tokens';
 import { APP_ROUTES } from './app.routes';
+import { AboutComponent } from './about/about.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ContactsAppComponent } from './contacts.component';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
@@ -9,6 +10,7 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactsService } from "./contacts.service";
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventBusService } from './event-bus.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from "@angular/forms";
@@ -17,8 +19,10 @@ import { MaterialModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { TabComponent } from './tabs/tab.component';
 import { TabsComponent } from './tabs/tabs.component';
-import { AboutComponent } from './about/about.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
+export function doConfirm() {
+  return window.confirm('Navigate away without saving?');
+}
 
 @NgModule({
   declarations: [
@@ -43,7 +47,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   providers: [
     ContactsService,
     EventBusService,
-   <ValueProvider>{ provide: API_ENDPOINT_TOKEN, useValue: 'http://localhost:4201' }
+    <ValueProvider>{ provide: API_ENDPOINT_TOKEN, useValue: 'http://localhost:4201' },
+    { provide: 'ConfirmNavigationGuard', useValue: doConfirm }
   ],
   bootstrap: [ContactsAppComponent]
 })
