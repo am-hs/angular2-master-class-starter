@@ -21,10 +21,18 @@ export class ContactsListComponent implements OnInit {
   terms$ = new Subject<string>();
   
   constructor(
-      private contactsService: ContactsService
+      private contactsService: ContactsService,
+      private eventBusService: EventBusService
   ) {}
 
   ngOnInit() {
+    this.update();
+    this.eventBusService
+      .observe(EventBusService.TYPE_UPDATE_LIST)
+      .subscribe(() => this.update());
+  }
+
+  update() {
     this.contacts = this.terms$
       .debounceTime(400)
       .distinctUntilChanged()

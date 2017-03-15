@@ -1,5 +1,6 @@
 import { AboutComponent } from './about/about.component';
 import { CONFIRM_GUARD } from "./data/tokens";
+import { ContactsCreatorComponent } from './contacts-creator/contacts-creator.component';
 import { ContactsDetailViewComponent } from "./contacts-detail-view/contacts-detail-view.component";
 import { ContactsEditorComponent } from "./contacts-editor/contacts-editor.component";
 import { ContactsResolver } from "./shared/contacts.resolver";
@@ -9,6 +10,7 @@ import { Route } from "@angular/router/typings/router";
 export const APP_ROUTES: Route[] = [
      { path: 'about', loadChildren: './about/about.module#AboutModule' },
      { path: '', component: DashboardComponent, children: [
+        { path: 'contact/new', component: ContactsCreatorComponent },
         { path: 'contacts/:id', component: ContactsDetailViewComponent,
             resolve: { contact: ContactsResolver } },
         { path: 'contacts/:id/edit', component: ContactsEditorComponent,

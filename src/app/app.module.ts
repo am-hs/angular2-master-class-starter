@@ -4,6 +4,7 @@ import { NgModule, OpaqueToken, ValueProvider } from '@angular/core';
 import { APP_ROUTES } from './app.routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { ContactsAppComponent } from './contacts.component';
+import { ContactsCreatorComponent } from './contacts-creator/contacts-creator.component';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
@@ -33,7 +34,8 @@ export function doConfirm(component: ContactsEditorComponent) {
     ContactsDetailViewComponent,
     TabComponent,
     TabsComponent,
-    DashboardComponent
+    DashboardComponent,
+    ContactsCreatorComponent
   ],
   imports: [
     BrowserModule,

@@ -5,10 +5,11 @@ import { Subject } from 'rxjs/Subject';
 export class EventBusService {
 
   static TYPE_APP_TITLE = 'app_title';
+  static TYPE_UPDATE_LIST = 'update_list';
 
   private messages$ = new Subject<EventBusArgs>();
 
-  emit(eventType: string, data: any) {
+  emit(eventType: string, data: any = null) {
     this.messages$.next({ type: eventType, data: data });
   }
 

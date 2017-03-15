@@ -44,6 +44,13 @@ export class ContactsService {
     };
   }
 
+  addContact(contact: Contact) : Observable<Contact> {
+    return this.http.post(
+      this.apiToken + '/api/contacts',
+      contact
+    ).map(response => response.json().item);
+  }
+
   search(term: string) : Observable<Contact[]> {
     let url = this.apiToken + '/api/search?text=' + term;
     return this.http.get(url)
