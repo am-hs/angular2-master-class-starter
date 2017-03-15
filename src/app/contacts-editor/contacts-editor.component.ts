@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Contact } from "../models/contact";
 import { ContactsService } from "../contacts.service";
+import { EventBusService } from './../event-bus.service';
 
 @Component({
   selector: 'trm-contacts-editor',
@@ -16,7 +17,8 @@ export class ContactsEditorComponent implements OnInit {
   constructor(
     private contactsService: ContactsService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private eventBusService: EventBusService
   ) { }
 
   ngOnInit() {
@@ -26,6 +28,11 @@ export class ContactsEditorComponent implements OnInit {
       .getContact(this.activatedRoute.snapshot.params['id'])
       .subscribe(contact => this.contact = contact)
       ;
+    
+    this.eventBusService.emit(
+      EventBusService.TYPE_APP_TITLE,
+      "Contact editor"
+      );
   }
 
   cancel(contact: Contact) {

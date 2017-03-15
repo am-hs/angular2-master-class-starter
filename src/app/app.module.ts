@@ -9,6 +9,7 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactsService } from "./contacts.service";
+import { EventBusService } from './event-bus.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
@@ -37,6 +38,7 @@ import { TabsComponent } from './tabs/tabs.component';
   ],
   providers: [
     ContactsService,
+    EventBusService,
    <ValueProvider>{ provide: API_ENDPOINT_TOKEN, useValue: 'http://localhost:4201' }
   ],
   bootstrap: [ContactsAppComponent]

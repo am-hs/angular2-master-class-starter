@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Contact } from "../models/contact";
 import { ContactsService } from "../contacts.service";
+import { EventBusService } from './../event-bus.service';
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
@@ -20,7 +21,8 @@ export class ContactsListComponent implements OnInit {
   terms$ = new Subject<string>();
   
   constructor(
-      private contactsService: ContactsService
+      private contactsService: ContactsService,
+      private eventBusService: EventBusService
   ) {}
 
   ngOnInit() {
@@ -30,5 +32,10 @@ export class ContactsListComponent implements OnInit {
       .switchMap(term => this.contactsService.search(term))
       .merge(this.contactsService.getContacts())
       ;
+    
+    this.eventBusService.emit(
+      EventBusService.TYPE_APP_TITLE,
+      "Contacts"
+      );
   }
 }
