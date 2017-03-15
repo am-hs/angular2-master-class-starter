@@ -9,6 +9,7 @@ import { ContactsDetailComponent } from './contacts-detail/contacts-detail.compo
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
+import { ContactsResolver } from "./shared/contacts.resolver";
 import { ContactsService } from "./contacts.service";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventBusService } from './event-bus.service';
@@ -48,7 +49,8 @@ export function doConfirm(component: ContactsEditorComponent) {
     ContactsService,
     EventBusService,
     <ValueProvider>{ provide: API_ENDPOINT_TOKEN, useValue: 'http://localhost:4201' },
-    { provide: CONFIRM_GUARD, useValue: doConfirm }
+    { provide: CONFIRM_GUARD, useValue: doConfirm },
+    ContactsResolver
   ],
   bootstrap: [ContactsAppComponent]
 })

@@ -16,19 +16,16 @@ export class ContactsEditorComponent implements OnInit {
   warnOnClosing: boolean = true
 
   constructor(
-    private contactsService: ContactsService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private eventBusService: EventBusService
+    private eventBusService: EventBusService,
+    private contactsService: ContactsService
   ) { }
 
-  ngOnInit() {
-    this.contact = this.contactsService.getDefault();
-    
-    this.contactsService
-      .getContact(this.activatedRoute.snapshot.params['id'])
-      .subscribe(contact => this.contact = contact)
-      ;
+  ngOnInit() {    
+    this.activatedRoute.data
+      .map(data => <Contact>data['contact'])
+      .subscribe(contact => this.contact = contact);
     
     this.eventBusService.emit(
       EventBusService.TYPE_APP_TITLE,
